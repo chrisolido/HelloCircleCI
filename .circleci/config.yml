@@ -17,6 +17,12 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello Chris Olido, World!"
+      - run:
+          name: "Install Python3"
+          command: apt-get install python3
+      - run:
+          name: "Install python3.8-venv"
+          command: apt-get install python3.8-venv
       - run: 
           name: "Install Terraform"
           command:  wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
