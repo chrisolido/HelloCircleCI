@@ -20,6 +20,15 @@ jobs:
       - run: 
           name: "Install Terraform"
           command:  wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
+      - run:
+          name: "Unzip the Terraform zip file"
+          command: unzip terraform_0.12.21_linux_amd64.zip && rm terraform_0.12.21_linux_amd64.zip
+      - run:
+          name: "Move Terraform binary to /usr/bin/terraform"
+          command: mv terraform /usr/bin/terraform
+      - run:
+          name: "Check the terraform version"
+          command: terraform -v
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
