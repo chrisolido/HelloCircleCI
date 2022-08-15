@@ -25,7 +25,7 @@ jobs:
           command: unzip terraform_0.12.21_linux_amd64.zip && rm terraform_0.12.21_linux_amd64.zip
       - run:
           name: "Move Terraform binary to /usr/bin/terraform"
-          command: mv terraform /usr/bin/terraform
+          command: sudo mv terraform /usr/bin/terraform
       - run:
           name: "Check the terraform version"
           command: terraform -v
