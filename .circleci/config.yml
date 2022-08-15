@@ -29,6 +29,15 @@ jobs:
       - run:
           name: "Check the terraform version"
           command: terraform -v
+      - run:
+          name: "Get the AWS CLI zip file"
+          command: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+      - run:
+          name: "Uzip the AWS CLI zip file"
+          command: unzip awscli-bundle.zip
+      - run:
+          name: "Sudo install AWS CLI"
+          command: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
