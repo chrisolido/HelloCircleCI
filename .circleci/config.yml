@@ -47,13 +47,13 @@ jobs:
       - run:
           name: "Check AWS CLI Version"
           command: aws --version
-      -run:
+      - run:
           name: "AWS Configure AWS_ACCESS_KEY_ID"
           command: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-      -run:
+      - run:
           name: "AWS Configure AWS_SECRET_ACCESS_KEY"
           command: aws configure set aws_access_key_id $AWS_SECRET_ACCESS_KEY
-      -run:
+      - run:
           name: "AWS S3 LS"
           command: aws s3 ls
 
