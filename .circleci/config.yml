@@ -44,6 +44,19 @@ jobs:
       - run:
           name: "Sudo install AWS CLI"
           command: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+      - run:
+          name: "Check AWS CLI Version"
+          command: aws --version
+      -run:
+          name: "AWS Configure AWS_ACCESS_KEY_ID"
+          command: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      -run:
+          name: "AWS Configure AWS_SECRET_ACCESS_KEY"
+          command: aws configure set aws_access_key_id $AWS_SECRET_ACCESS_KEY
+      -run:
+          name: "AWS S3 LS"
+          command: aws s3 ls
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
