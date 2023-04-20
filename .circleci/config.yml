@@ -5,66 +5,12 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  terraform:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello Chris Olido, World!"
-      - run:
-          name: "Install Python3"
-          command: sudo apt install python-is-python3
-      - run:
-          name: "Install python3.8-venv"
-          command: sudo apt-get install python3.8-venv
-      - run: 
-          name: "Install Terraform"
-          command:  wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
-      - run:
-          name: "Unzip the Terraform zip file"
-          command: unzip terraform_0.12.21_linux_amd64.zip && rm terraform_0.12.21_linux_amd64.zip
-      - run:
-          name: "Move Terraform binary to /usr/bin/terraform"
-          command: sudo mv terraform /usr/bin/terraform
-      - run:
-          name: "Check the terraform version"
-          command: terraform -v
-      - run:
-          name: "Get the AWS CLI zip file"
-          command: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-      - run:
-          name: "Uzip the AWS CLI zip file"
-          command: unzip awscli-bundle.zip
-      - run:
-          name: "Sudo install AWS CLI"
-          command: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-      - run:
-          name: "Check AWS CLI Version"
-          command: aws --version
-      - run:
-          name: "AWS Configure AWS_ACCESS_KEY_ID"
-          command: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-      - run:
-          name: "AWS Configure AWS_SECRET_ACCESS_KEY"
-          command: aws configure set aws_access_key_id $AWS_SECRET_ACCESS_KEY
-      - run:
-          name: "AWS S3 LS"
-          command: aws s3 ls
-      - run:
-          name: "Terraform init"
-          command: terraform init    
-
-
-
+  say-hello:
+  
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - terraform
+      - say-hello
+
